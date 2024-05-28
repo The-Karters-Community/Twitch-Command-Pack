@@ -3,13 +3,19 @@
 
 using System.Collections.Generic;
 using HarmonyLib;
+using TwitchCommandPack.Commands;
 using UnityEngine;
 
 namespace TwitchCommandPack.Core;
 
 [HarmonyPatch(typeof(Ant_KartParticlesWorker), nameof(Ant_KartParticlesWorker.WorkerUpdate))]
 public static class Ant_KartParticlesWorker__WorkerUpdate {
-    private static bool Postfix(Ant_KartParticlesWorker __instance) {
+    private static bool Prefix(Ant_KartParticlesWorker __instance) {
+        // Do not execute what's after is the command is not active.
+        if (!ReverseScreenCommand.isReverseScreenEnabled) {
+            return true;
+        }
+
         Dictionary<object, Vector3> OrigScales = new();
 
         // This at least makes the kart particles face the camera
