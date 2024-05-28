@@ -7,7 +7,11 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
     public static float timeInSeconds = 0f;
 
     public string CommandFeedback(string _user, string[] _command) {
-        return $"Thanks {_user} for breaking the steering wheel...";
+        if (!isReverseDirectionInputsEnabled) {
+            return $"Everyone thanks {_user} for repairing the steering wheel!";
+        }
+
+        return $"{_user}, what did you do to the steering wheel?!";
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
