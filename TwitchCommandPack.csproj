@@ -4,7 +4,7 @@
     <AssemblyName>TwitchCommandPack</AssemblyName>
     <Description>Want to make your stream of TK2:TC more fun for your spectators (and worst for you)?</Description>
     <Author>Arca</Author>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
 
