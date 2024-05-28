@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>NewModTemplate</AssemblyName>
-    <Description>A starter template for TK2:TC modding.</Description>
+    <AssemblyName>TwitchCommandPack</AssemblyName>
+    <Description>Want to make your stream of TK2:TC more fun for your spectators (and worst for you)?</Description>
     <Author>Arca</Author>
-    <Version>1.0.0</Version>
+    <Version>0.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
 
@@ -14,7 +14,7 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
 
-    <RootNamespace>NewModTemplate</RootNamespace>
+    <RootNamespace>TwitchCommandPack</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -58,6 +58,14 @@
 
     <Reference Include="TheKartersModdingAssistantSdk">
       <HintPath>../_references/mods/TheKartersModdingAssistant.dll</HintPath>
+    </Reference>
+
+    <Reference Include="TwitchBasicCommandsSDK">
+      <HintPath>../_references/mods/TwitchBasicCommandsSDK.dll</HintPath>
+    </Reference>
+
+    <Reference Include="TwitchIntegrationSDK">
+      <HintPath>../_references/mods/TwitchIntegrationSDK.dll</HintPath>
     </Reference>
 
     <Reference Include="SharpDX">

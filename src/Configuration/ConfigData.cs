@@ -1,9 +1,9 @@
-namespace NewModTemplate;
+namespace TwitchCommandPack;
 
 public class ConfigData {
     // General
     public bool isModEnabled;
 
     // Customization
-    //public int myIntegerCustomizationConfig;
+    public bool isReverseDirectionInputsCommandEnabled;
 }
