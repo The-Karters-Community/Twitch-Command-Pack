@@ -11,17 +11,21 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
+        TwitchCommandPack.Get().logger.Log("cmd executed");
+
         isReverseDirectionInputsEnabled = !isReverseDirectionInputsEnabled;
 
         return true;
     }
 
     public bool IsActivated() {
+        TwitchCommandPack.Get().logger.Log("cmd registered");
         return TwitchCommandPack.Get().data.isReverseDirectionInputsCommandEnabled;
     }
 
     public bool ShouldExecuteCommand(string _user, string[] _command) {
         if (_command.Length != 3) {
+            TwitchCommandPack.Get().logger.Log("not enough parts");
             return false;
         }
 
@@ -29,10 +33,12 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
         string secondWord = _command[2];
 
         if (firstWord != "reverse") {
+            TwitchCommandPack.Get().logger.Log("first term is wrong");
             return false;
         }
 
         if (secondWord != "direction" || secondWord != "directions") {
+            TwitchCommandPack.Get().logger.Log("second term is wrong");
             return false;
         }
 

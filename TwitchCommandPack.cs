@@ -1,7 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using TheKarters2Mods;
+using TheKarters2Mods.Patches;
 using TheKartersModdingAssistant;
+using TwitchCommandPack.Commands;
 using TwitchCommandPack.Core;
 
 namespace TwitchCommandPack;
@@ -52,6 +54,8 @@ public class TwitchCommandPack: AbstractPlugin {
             // Then, add methods to the SDK actions.
             // Eg:
             //GameEvent.onGameStart += () => logger.Log("(From action) The game has been started.");
+
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseDirectionInputsCommand());
         }
     }
 
