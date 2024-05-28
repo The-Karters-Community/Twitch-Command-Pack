@@ -7,6 +7,10 @@ public class ReverseScreenCommand : ITwitchCommand {
     public static float timeInSeconds = 0f;
 
     public string CommandFeedback(string _user, string[] _command) {
+        if (!isReverseScreenEnabled) {
+            return $"Oh {_user} prefers your streamer in their right profile.";
+        }
+
         return $"Yes {_user}, it's time to look your favorite streamer in a mirror.";
     }
 
@@ -17,7 +21,7 @@ public class ReverseScreenCommand : ITwitchCommand {
     }
 
     public bool IsActivated() {
-        return TwitchCommandPack.Get().data.isMirrorModeCommandEnabled;
+        return TwitchCommandPack.Get().data.isReverseScreenCommandEnabled;
     }
 
     public bool ShouldExecuteCommand(string _user, string[] _command) {
