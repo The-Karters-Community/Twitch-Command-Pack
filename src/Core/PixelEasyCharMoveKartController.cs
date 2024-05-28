@@ -10,8 +10,11 @@ namespace TwitchCommandPack.Core;
 [HarmonyPatch(typeof(PixelEasyCharMoveKartController), nameof(PixelEasyCharMoveKartController.SteerInput))]
 public static class PixelEasyCharMoveKartController__SteerInput {
     private static bool Prefix(PixelEasyCharMoveKartController __instance, ref float __0) {
+        bool onlyIsReverseDirectionInputsEnabled = ReverseDirectionInputsCommand.isReverseDirectionInputsEnabled && !ReverseScreenCommand.isReverseScreenEnabled;
+        bool onlyIsReverseScreenEnabled = !ReverseDirectionInputsCommand.isReverseDirectionInputsEnabled && ReverseScreenCommand.isReverseScreenEnabled;
+
         // Do not execute what's after is the command is not active.
-        if (!ReverseDirectionInputsCommand.isReverseDirectionInputsEnabled) {
+        if (!onlyIsReverseDirectionInputsEnabled && !onlyIsReverseScreenEnabled) {
             return true;
         }
 

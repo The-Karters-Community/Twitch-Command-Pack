@@ -6,4 +6,5 @@ public class ConfigData {
 
     // Customization
     public bool isReverseDirectionInputsCommandEnabled;
+    public bool isReverseScreenCommandEnabled;
 }

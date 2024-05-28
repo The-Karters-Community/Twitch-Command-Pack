@@ -51,11 +51,18 @@ public class TwitchCommandPack: AbstractPlugin {
             // Put all methods that should patched by Harmony here.
             harmony.PatchAll(typeof(PixelEasyCharMoveKartController__SteerInput));
 
+            harmony.PatchAll(typeof(PixelSDK_CameraEvents__OnPreCull));
+            harmony.PatchAll(typeof(PixelSDK_CameraEvents__OnPreRender));
+            harmony.PatchAll(typeof(PixelSDK_CameraEvents__OnPostRender));
+
+            harmony.PatchAll(typeof(Ant_KartParticlesWorker__WorkerUpdate));
+
             // Then, add methods to the SDK actions.
             // Eg:
             //GameEvent.onGameStart += () => logger.Log("(From action) The game has been started.");
 
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseDirectionInputsCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseScreenCommand());
         }
     }
 
@@ -89,9 +96,17 @@ public class TwitchCommandPack: AbstractPlugin {
             ConfigCategory.Customization,
             nameof(isReverseDirectionInputsCommandEnabled),
             true,
-            "Whether the reverse direction inputs is enabled."
+            "Whether the reverse direction inputs command is enabled."
+        );
+
+        ConfigEntry<bool> isReverseScreenCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isReverseScreenCommandEnabled),
+            true,
+            "Whether the reverse screen command is enabled."
         );
 
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
+        data.isReverseScreenCommandEnabled = isReverseScreenCommandEnabled.Value;
     }
 }
