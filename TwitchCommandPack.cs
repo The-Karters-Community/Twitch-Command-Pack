@@ -65,6 +65,7 @@ public class TwitchCommandPack: AbstractPlugin {
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenMirrorCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenFlipCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new TeleportCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new MoonJumpCommand());
         }
     }
 
@@ -122,9 +123,17 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the teleport command is enabled. Usage: \"teleport [pos|name]\" or \"tp [pos|name]\". If no position or name is given, it will randomly choose another player."
         );
 
+        ConfigEntry<bool> isMoonJumpCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isMoonJumpCommandEnabled),
+            true,
+            "Whether the moon jump command is enabled. Usage: \"moonjump [strength]\". The strength will be clamped between 10 and 100. If no strength is given, then the maximum strength will be used."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
         data.isTeleportCommandEnabled = iTeleportCommandEnabled.Value;
+        data.isMoonJumpCommandEnabled = isMoonJumpCommandEnabled.Value;
     }
 }

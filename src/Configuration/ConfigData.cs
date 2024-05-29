@@ -9,4 +9,5 @@ public class ConfigData {
     public bool isScreenMirrorCommandEnabled;
     public bool isScreenFlipCommandEnabled;
     public bool isTeleportCommandEnabled;
+    public bool isMoonJumpCommandEnabled;
 }
