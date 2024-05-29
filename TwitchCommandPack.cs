@@ -127,7 +127,7 @@ public class TwitchCommandPack: AbstractPlugin {
             ConfigCategory.Customization,
             nameof(isMoonJumpCommandEnabled),
             true,
-            "Whether the moon jump command is enabled. Usage: \"moonjump [strength]\". The strength will be clamped between 10 and 100. If no strength is given, then the maximum strength will be used."
+            "Whether the moon jump command is enabled. Usage: \"moonjump [strength]\". The strength will be clamped between 100 and 200. If no strength is given, then the maximum strength will be used."
         );
 
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
