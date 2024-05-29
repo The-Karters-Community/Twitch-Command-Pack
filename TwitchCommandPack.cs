@@ -64,6 +64,7 @@ public class TwitchCommandPack: AbstractPlugin {
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseDirectionInputsCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenMirrorCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenFlipCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new TeleportCommand());
         }
     }
 
@@ -114,8 +115,16 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the screen flip command is enabled."
         );
 
+        ConfigEntry<bool> iTeleportCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(iTeleportCommandEnabled),
+            true,
+            "Whether the teleport command is enabled. Usage: \"teleport [pos|name]\" or \"tp [pos|name]\". If no position or name is given, it will randomly choose another player."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
+        data.isTeleportCommandEnabled = iTeleportCommandEnabled.Value;
     }
 }

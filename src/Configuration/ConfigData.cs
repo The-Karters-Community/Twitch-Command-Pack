@@ -8,4 +8,5 @@ public class ConfigData {
     public bool isReverseDirectionInputsCommandEnabled;
     public bool isScreenMirrorCommandEnabled;
     public bool isScreenFlipCommandEnabled;
+    public bool isTeleportCommandEnabled;
 }
