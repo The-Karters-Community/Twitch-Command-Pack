@@ -11,15 +11,19 @@ namespace TwitchCommandPack.Core;
 public static class PixelSDK_CameraEvents__OnPreCull {
     private static void Postfix(PixelSDK_CameraEvents __instance) {
         // Do not execute what's after is the command is not active.
-        if (!ReverseScreenCommand.isReverseScreenEnabled) {
+        if (!ScreenMirrorCommand.isEnabled && !ScreenFlipCommand.isEnabled) {
             return;
         }
 
         // Invert the camera projection matrix across the X-axis
-        var camera = __instance.parentCamera.unityCamera;
-        var mat = camera.projectionMatrix;
+        Camera camera = __instance.parentCamera.unityCamera;
+        Matrix4x4 mat = camera.projectionMatrix;
 
-        mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
+        int scaleX = ScreenMirrorCommand.isEnabled ? -1 : 1;
+        int scaleY = ScreenFlipCommand.isEnabled ? -1 : 1;
+        int scaleZ = 1;
+
+        mat *= Matrix4x4.Scale(new Vector3(scaleX, scaleY, scaleZ));
         camera.projectionMatrix = mat;
     }
 }
@@ -28,7 +32,7 @@ public static class PixelSDK_CameraEvents__OnPreCull {
 public static class PixelSDK_CameraEvents__OnPreRender {
     private static void Postfix() {
         // Do not execute what's after is the command is not active.
-        if (!ReverseScreenCommand.isReverseScreenEnabled) {
+        if (!ScreenMirrorCommand.isEnabled && !ScreenFlipCommand.isEnabled) {
             return;
         }
 
@@ -40,7 +44,7 @@ public static class PixelSDK_CameraEvents__OnPreRender {
 public static class PixelSDK_CameraEvents__OnPostRender {
     private static void Postfix() {
         // Do not execute what's after is the command is not active.
-        if (!ReverseScreenCommand.isReverseScreenEnabled) {
+        if (!ScreenMirrorCommand.isEnabled && !ScreenFlipCommand.isEnabled) {
             return;
         }
 

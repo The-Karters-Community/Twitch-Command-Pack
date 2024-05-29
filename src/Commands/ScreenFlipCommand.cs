@@ -2,15 +2,15 @@ using TheKarters2Mods.Patches;
 
 namespace TwitchCommandPack.Commands;
 
-public class ReverseDirectionInputsCommand : ITwitchCommand {
+public class ScreenFlipCommand : ITwitchCommand {
     public static bool isEnabled = false;
 
     public string CommandFeedback(string _user, string[] _command) {
         if (!isEnabled) {
-            return $"Everyone thanks {_user} for repairing the steering wheel!";
+            return $"{_user} is our doctor!";
         }
 
-        return $"{_user}, what did you do to the steering wheel?!";
+        return $"{_user} makes everyone dizzy...";
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
@@ -20,7 +20,7 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
     }
 
     public bool IsActivated() {
-        return TwitchCommandPack.Get().data.isReverseDirectionInputsCommandEnabled;
+        return TwitchCommandPack.Get().data.isScreenFlipCommandEnabled;
     }
 
     public bool ShouldExecuteCommand(string _user, string[] _command) {
@@ -31,10 +31,10 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
         string firstWord = _command[1];
         string secondWord = _command[2];
 
-        if (firstWord != "reverse") {
+        if (firstWord != "screen" || secondWord != "flip") {
             return false;
         }
 
-        return secondWord == "direction" || secondWord == "directions";
+        return true;
     }
 }

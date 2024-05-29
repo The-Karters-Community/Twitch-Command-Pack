@@ -62,7 +62,8 @@ public class TwitchCommandPack: AbstractPlugin {
             //GameEvent.onGameStart += () => logger.Log("(From action) The game has been started.");
 
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseDirectionInputsCommand());
-            TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseScreenCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenMirrorCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenFlipCommand());
         }
     }
 
@@ -99,14 +100,22 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the reverse direction inputs command is enabled."
         );
 
-        ConfigEntry<bool> isReverseScreenCommandEnabled = Config.Bind(
+        ConfigEntry<bool> isScreenMirrorCommandEnabled = Config.Bind(
             ConfigCategory.Customization,
-            nameof(isReverseScreenCommandEnabled),
+            nameof(isScreenMirrorCommandEnabled),
             true,
-            "Whether the reverse screen command is enabled."
+            "Whether the screen mirror command is enabled."
+        );
+
+        ConfigEntry<bool> isScreenFlipCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isScreenFlipCommandEnabled),
+            true,
+            "Whether the screen flip command is enabled."
         );
 
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
-        data.isReverseScreenCommandEnabled = isReverseScreenCommandEnabled.Value;
+        data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
+        data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
     }
 }

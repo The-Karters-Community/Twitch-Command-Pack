@@ -2,12 +2,11 @@ using TheKarters2Mods.Patches;
 
 namespace TwitchCommandPack.Commands;
 
-public class ReverseScreenCommand : ITwitchCommand {
-    public static bool isReverseScreenEnabled = false;
-    public static float timeInSeconds = 0f;
+public class ScreenMirrorCommand : ITwitchCommand {
+    public static bool isEnabled = false;
 
     public string CommandFeedback(string _user, string[] _command) {
-        if (!isReverseScreenEnabled) {
+        if (!isEnabled) {
             return $"Oh {_user} prefers your streamer in their right profile.";
         }
 
@@ -15,13 +14,13 @@ public class ReverseScreenCommand : ITwitchCommand {
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
-        isReverseScreenEnabled = !isReverseScreenEnabled;
+        isEnabled = !isEnabled;
 
         return true;
     }
 
     public bool IsActivated() {
-        return TwitchCommandPack.Get().data.isReverseScreenCommandEnabled;
+        return TwitchCommandPack.Get().data.isScreenMirrorCommandEnabled;
     }
 
     public bool ShouldExecuteCommand(string _user, string[] _command) {
@@ -32,10 +31,10 @@ public class ReverseScreenCommand : ITwitchCommand {
         string firstWord = _command[1];
         string secondWord = _command[2];
 
-        if (firstWord != "reverse") {
+        if (firstWord != "screen" || secondWord != "mirror") {
             return false;
         }
 
-        return secondWord == "screen";
+        return true;
     }
 }

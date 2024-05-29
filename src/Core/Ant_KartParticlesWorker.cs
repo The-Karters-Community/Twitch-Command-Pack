@@ -12,7 +12,7 @@ namespace TwitchCommandPack.Core;
 public static class Ant_KartParticlesWorker__WorkerUpdate {
     private static bool Prefix(Ant_KartParticlesWorker __instance) {
         // Do not execute what's after is the command is not active.
-        if (!ReverseScreenCommand.isReverseScreenEnabled) {
+        if (!ScreenMirrorCommand.isEnabled && !ScreenFlipCommand.isEnabled) {
             return true;
         }
 
@@ -23,7 +23,11 @@ public static class Ant_KartParticlesWorker__WorkerUpdate {
 
         var v = OrigScales[__instance];
 
-        __instance.transform.localScale = new Vector3(v.x * -1, v.y, v.z * -1);
+        float fx = ScreenMirrorCommand.isEnabled ? -1 : 1;
+        float fy = ScreenFlipCommand.isEnabled ? -1 : 1;
+        float fz = -1;
+
+        __instance.transform.localScale = new Vector3(v.x * fx, v.y * fy, v.z * fz);
 
         return true;
     }
