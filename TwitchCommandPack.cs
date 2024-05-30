@@ -69,6 +69,7 @@ public class TwitchCommandPack: AbstractPlugin {
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new FreezeCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new AutoDriveCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new DashCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new TankCommand());
         }
     }
 
@@ -154,6 +155,13 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the dash command is enabled. Usage: \"dash\"."
         );
 
+        ConfigEntry<bool> isTankCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isTankCommandEnabled),
+            true,
+            "Whether the tank command is enabled. Usage: \"tank\"."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
@@ -162,5 +170,6 @@ public class TwitchCommandPack: AbstractPlugin {
         data.isFreezeCommandEnabled = isFreezeCommandEnabled.Value;
         data.isAutoDriveCommandEnabled = isAutoDriveCommandEnabled.Value;
         data.isDashCommandEnabled = isDashCommandEnabled.Value;
+        data.isTankCommandEnabled = isTankCommandEnabled.Value;
     }
 }

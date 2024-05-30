@@ -13,4 +13,5 @@ public class ConfigData {
     public bool isFreezeCommandEnabled;
     public bool isAutoDriveCommandEnabled;
     public bool isDashCommandEnabled;
+    public bool isTankCommandEnabled;
 }
