@@ -1,20 +1,30 @@
+using System.Collections;
+using BepInEx.Unity.IL2CPP.Utils.Collections;
 using TheKarters2Mods.Patches;
+using TheKartersModdingAssistant;
+using UnityEngine;
 
 namespace TwitchCommandPack.Commands;
 
 public class ScreenMirrorCommand : ITwitchCommand {
     public static bool isEnabled = false;
+    public static float timeInSeconds = 5;
+    public Player player;
 
     public string CommandFeedback(string _user, string[] _command) {
         if (!isEnabled) {
-            return $"Oh {_user} prefers your streamer in their right profile.";
+            return $"Oh {_user} prefers {player.GetName()} in their right profile.";
         }
 
         return $"Yes {_user}, it's time to look your favorite streamer in a mirror.";
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
-        isEnabled = !isEnabled;
+        player = Player.FindMainPlayer();
+
+        isEnabled = true;
+
+        player.uAntPlayer.StartCoroutine(ExecuteCountdown().WrapToIl2Cpp());
 
         return true;
     }
@@ -36,5 +46,11 @@ public class ScreenMirrorCommand : ITwitchCommand {
         }
 
         return true;
+    }
+
+    protected IEnumerator ExecuteCountdown() {
+        yield return new WaitForSeconds(timeInSeconds);
+
+        isEnabled = false;
     }
 }

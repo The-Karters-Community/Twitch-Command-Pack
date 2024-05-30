@@ -1,9 +1,15 @@
+using System.Collections;
+using BepInEx.Unity.IL2CPP.Utils.Collections;
 using TheKarters2Mods.Patches;
+using TheKartersModdingAssistant;
+using UnityEngine;
 
 namespace TwitchCommandPack.Commands;
 
 public class ReverseDirectionInputsCommand : ITwitchCommand {
     public static bool isEnabled = false;
+    public static float timeInSeconds = 5;
+    public Player player;
 
     public string CommandFeedback(string _user, string[] _command) {
         if (!isEnabled) {
@@ -14,7 +20,11 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
     }
 
     public bool ExecuteCommand(string _user, string[] _command) {
-        isEnabled = !isEnabled;
+        player = Player.FindMainPlayer();
+
+        isEnabled = true;
+
+        player.uAntPlayer.StartCoroutine(ExecuteCountdown().WrapToIl2Cpp());
 
         return true;
     }
@@ -36,5 +46,11 @@ public class ReverseDirectionInputsCommand : ITwitchCommand {
         }
 
         return secondWord == "direction" || secondWord == "directions";
+    }
+
+    protected IEnumerator ExecuteCountdown() {
+        yield return new WaitForSeconds(timeInSeconds);
+
+        isEnabled = false;
     }
 }
