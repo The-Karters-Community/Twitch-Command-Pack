@@ -159,7 +159,7 @@ public class TwitchCommandPack: AbstractPlugin {
             ConfigCategory.Customization,
             nameof(isTankCommandEnabled),
             true,
-            "Whether the tank command is enabled. Usage: \"tank\"."
+            "Whether the tank command is enabled. Usage: \"tank\" or \"tank ais\"."
         );
 
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
