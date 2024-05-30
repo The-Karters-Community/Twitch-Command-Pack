@@ -12,4 +12,5 @@ public class ConfigData {
     public bool isMoonJumpCommandEnabled;
     public bool isFreezeCommandEnabled;
     public bool isAutoDriveCommandEnabled;
+    public bool isDashCommandEnabled;
 }

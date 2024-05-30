@@ -68,6 +68,7 @@ public class TwitchCommandPack: AbstractPlugin {
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new MoonJumpCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new FreezeCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new AutoDriveCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new DashCommand());
         }
     }
 
@@ -146,6 +147,13 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the auto drive command is enabled. Usage: \"autodrive\". The effect will last 5 seconds."
         );
 
+        ConfigEntry<bool> isDashCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isDashCommandEnabled),
+            true,
+            "Whether the dash command is enabled. Usage: \"dash\"."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
@@ -153,5 +161,6 @@ public class TwitchCommandPack: AbstractPlugin {
         data.isMoonJumpCommandEnabled = isMoonJumpCommandEnabled.Value;
         data.isFreezeCommandEnabled = isFreezeCommandEnabled.Value;
         data.isAutoDriveCommandEnabled = isAutoDriveCommandEnabled.Value;
+        data.isDashCommandEnabled = isDashCommandEnabled.Value;
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using ItemEffects;
 using TheKartersModdingAssistant;
 using TheKartersModdingAssistant.Event;
 using TwitchCommandPack.Commands;
@@ -14,6 +16,7 @@ public static class PlayerEventHandler {
         if (AutoDriveCommand.player is null || !player.IsHuman()) {
             return;
         }
+
         player.IsControlledByAi(AutoDriveCommand.isEnabled);
     }
 
