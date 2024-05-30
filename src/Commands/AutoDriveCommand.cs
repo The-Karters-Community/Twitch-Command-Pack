@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace TwitchCommandPack.Commands;
 
-public class FreezeCommand: ITwitchCommand {
+public class AutoDriveCommand: ITwitchCommand {
     public static bool isEnabled = false;
     public static float timeInSeconds = 5;
 
     public static Player player;
 
     public string CommandFeedback(string _user, string[] _command) {
-        string feedback = $"{_user} transformed {player.GetName()} into a statue!";
+        string feedback = $"{_user} gives a lil pause to {player.GetName()}.";
 
         return feedback;
     }
@@ -23,25 +23,25 @@ public class FreezeCommand: ITwitchCommand {
 
         isEnabled = true;
         
-        player.uPixelKartPhysics.kartController.StartCoroutine(this.ExecuteCountdown().WrapToIl2Cpp());
+        player.uAntPlayer.StartCoroutine(this.ExecuteCountdown().WrapToIl2Cpp());
 
         return true;
     }
 
     public bool IsActivated() {
-        return TwitchCommandPack.Get().data.isFreezeCommandEnabled;
+        return TwitchCommandPack.Get().data.isAutoDriveCommandEnabled;
     }
 
     public bool ShouldExecuteCommand(string _user, string[] _command) {
         int amountOfTerms = _command.Length - 1;
 
-        if (amountOfTerms != 1) {
+        if (amountOfTerms > 1) {
             return false;
         }
 
         string firstTerm = _command[1];
 
-        return firstTerm == "freeze";
+        return firstTerm == "autodrive";
     }
 
     protected IEnumerator ExecuteCountdown() {

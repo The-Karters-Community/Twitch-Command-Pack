@@ -11,4 +11,5 @@ public class ConfigData {
     public bool isTeleportCommandEnabled;
     public bool isMoonJumpCommandEnabled;
     public bool isFreezeCommandEnabled;
+    public bool isAutoDriveCommandEnabled;
 }
