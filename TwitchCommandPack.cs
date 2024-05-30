@@ -100,21 +100,21 @@ public class TwitchCommandPack: AbstractPlugin {
             ConfigCategory.Customization,
             nameof(isReverseDirectionInputsCommandEnabled),
             true,
-            "Whether the reverse direction inputs command is enabled."
+            "Whether the reverse direction inputs command is enabled. Usage: \"reverse direction\". The effect will last 5 seconds."
         );
 
         ConfigEntry<bool> isScreenMirrorCommandEnabled = Config.Bind(
             ConfigCategory.Customization,
             nameof(isScreenMirrorCommandEnabled),
             true,
-            "Whether the screen mirror command is enabled."
+            "Whether the screen mirror command is enabled. Usage: \"screen mirror\". The effect will last 5 seconds."
         );
 
         ConfigEntry<bool> isScreenFlipCommandEnabled = Config.Bind(
             ConfigCategory.Customization,
             nameof(isScreenFlipCommandEnabled),
             true,
-            "Whether the screen flip command is enabled."
+            "Whether the screen flip command is enabled. Usage: \"screen flip\". The effect will last 5 seconds."
         );
 
         ConfigEntry<bool> iTeleportCommandEnabled = Config.Bind(
@@ -135,7 +135,7 @@ public class TwitchCommandPack: AbstractPlugin {
             ConfigCategory.Customization,
             nameof(isFreezeCommandEnabled),
             true,
-            "Whether the freeze command is enabled. Usage: \"freeze\"."
+            "Whether the freeze command is enabled. Usage: \"freeze\". The effect will last 5 seconds."
         );
 
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
