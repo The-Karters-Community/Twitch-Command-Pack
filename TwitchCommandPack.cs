@@ -70,6 +70,7 @@ public class TwitchCommandPack: AbstractPlugin {
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new AutoDriveCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new DashCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new TankCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new CrushCommand());
         }
     }
 
@@ -162,6 +163,13 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the tank command is enabled. Usage: \"tank\" or \"tank ais\"."
         );
 
+        ConfigEntry<bool> isCrushCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isCrushCommandEnabled),
+            true,
+            "Whether the crush command is enabled. Usage: \"crush\"."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
@@ -171,5 +179,6 @@ public class TwitchCommandPack: AbstractPlugin {
         data.isAutoDriveCommandEnabled = isAutoDriveCommandEnabled.Value;
         data.isDashCommandEnabled = isDashCommandEnabled.Value;
         data.isTankCommandEnabled = isTankCommandEnabled.Value;
+        data.isCrushCommandEnabled = isCrushCommandEnabled.Value;
     }
 }
