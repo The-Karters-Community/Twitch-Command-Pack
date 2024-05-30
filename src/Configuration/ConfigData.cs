@@ -10,4 +10,5 @@ public class ConfigData {
     public bool isScreenFlipCommandEnabled;
     public bool isTeleportCommandEnabled;
     public bool isMoonJumpCommandEnabled;
+    public bool isFreezeCommandEnabled;
 }

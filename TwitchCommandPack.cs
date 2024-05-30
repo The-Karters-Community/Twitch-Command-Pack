@@ -5,6 +5,7 @@ using TheKarters2Mods.Patches;
 using TheKartersModdingAssistant;
 using TwitchCommandPack.Commands;
 using TwitchCommandPack.Core;
+using TwitchCommandPack.EventHandler;
 
 namespace TwitchCommandPack;
 
@@ -58,14 +59,14 @@ public class TwitchCommandPack: AbstractPlugin {
             harmony.PatchAll(typeof(Ant_KartParticlesWorker__WorkerUpdate));
 
             // Then, add methods to the SDK actions.
-            // Eg:
-            //GameEvent.onGameStart += () => logger.Log("(From action) The game has been started.");
+            PlayerEventHandler.Initialize();
 
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ReverseDirectionInputsCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenMirrorCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new ScreenFlipCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new TeleportCommand());
             TwitchBasicCommandsSDK.Instance.RegisterCommand(new MoonJumpCommand());
+            TwitchBasicCommandsSDK.Instance.RegisterCommand(new FreezeCommand());
         }
     }
 
@@ -130,10 +131,18 @@ public class TwitchCommandPack: AbstractPlugin {
             "Whether the moon jump command is enabled. Usage: \"moonjump [strength]\". The strength will be clamped between 100 and 200. If no strength is given, then the maximum strength will be used."
         );
 
+        ConfigEntry<bool> isFreezeCommandEnabled = Config.Bind(
+            ConfigCategory.Customization,
+            nameof(isFreezeCommandEnabled),
+            true,
+            "Whether the freeze command is enabled. Usage: \"freeze\"."
+        );
+
         data.isReverseDirectionInputsCommandEnabled = isReverseDirectionInputsCommandEnabled.Value;
         data.isScreenMirrorCommandEnabled = isScreenMirrorCommandEnabled.Value;
         data.isScreenFlipCommandEnabled = isScreenFlipCommandEnabled.Value;
         data.isTeleportCommandEnabled = iTeleportCommandEnabled.Value;
         data.isMoonJumpCommandEnabled = isMoonJumpCommandEnabled.Value;
+        data.isFreezeCommandEnabled = isFreezeCommandEnabled.Value;
     }
 }
